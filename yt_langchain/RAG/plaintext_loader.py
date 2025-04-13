@@ -1,6 +1,6 @@
 from langchain_community.document_loaders import TextLoader
 from langchain_openai import ChatOpenAI
-from langchain_core.output_parsers import string_output_parser
+from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import PromptTemplate
 
 loader = TextLoader('cricket.txt',encoding='utf-8')
@@ -16,7 +16,7 @@ prompt = PromptTemplate(
     template="Generate a summary of the following text: {text}", 
     input_variables=["text"]
 )
-parser = string_output_parser()
+parser = StrOutputParser()
 
 chain = prompt | model | parser
 
